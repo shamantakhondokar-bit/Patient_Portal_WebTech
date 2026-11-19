@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Portal - HealthCare</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <h2>HealthCare - Patient Portal</h2>
+        <p>Welcome to your patient account</p>
+    </header>
+
+    <div class="container">
+        <nav class="menu">
+            <button type="button" class="active" onclick="showPage('profile', this)">My Profile</button>
+            <button type="button" onclick="showPage('booking', this)">Book Appointment</button>
+            <button type="button" onclick="showPage('appointments', this)">My Appointments</button>
+            <button type="button" onclick="showPage('records', this)">Medical Records</button>
+        </nav>
+
+        <!-- Patient Profile -->
+        <section id="profile" class="page">
+            <h2>My Profile</h2>
+            <form id="profileForm" novalidate>
+                <div class="form-group">
+                    <label for="patientName">Full Name</label>
+                    <input type="text" id="patientName" value="Rahim Ahmed">
+                    <span class="error" id="patientNameError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="patientEmail">Email</label>
+                    <input type="text" id="patientEmail" value="rahim@gmail.com">
+                    <span class="error" id="patientEmailError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="patientMobile">Mobile Number</label>
+                    <input type="text" id="patientMobile" value="01712345678">
+                    <span class="error" id="patientMobileError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="patientAge">Age</label>
+                    <input type="text" id="patientAge" value="25">
+                    <span class="error" id="patientAgeError"></span>
+                </div>
+
+                <button type="submit">Update Profile</button>
+            </form>
+            <p id="profileResult" class="result"></p>
+        </section>
+
+        <!-- Book Appointment -->
+        <section id="booking" class="page" style="display:none;">
+            <h2>Book an Appointment</h2>
+            <form id="bookingForm" novalidate>
+                <div class="form-group">
+                    <label for="bookName">Patient Name</label>
+                    <input type="text" id="bookName" placeholder="Enter your name">
+                    <span class="error" id="bookNameError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="department">Department</label>
+                    <select id="department">
+                        <option value="">Select Department</option>
+                        <option value="Cardiology">Cardiology</option>
+                        <option value="Neurology">Neurology</option>
+                        <option value="Medicine">Medicine</option>
+                        <option value="Orthopedics">Orthopedics</option>
+                    </select>
+                    <span class="error" id="departmentError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="doctor">Select Doctor</label>
+                    <select id="doctor">
+                        <option value="">Select Doctor</option>
+                        <option value="Dr. Sarah Ahmed">Dr. Sarah Ahmed</option>
+                        <option value="Dr. Hasan Karim">Dr. Hasan Karim</option>
+                        <option value="Dr. Nadia Islam">Dr. Nadia Islam</option>
+                    </select>
+                    <span class="error" id="doctorError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="appointmentDate">Appointment Date</label>
+                    <input type="date" id="appointmentDate">
+                    <span class="error" id="appointmentDateError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="appointmentTime">Appointment Time</label>
+                    <select id="appointmentTime">
+                        <option value="">Select Time</option>
+                        <option value="10:00 AM">10:00 AM</option>
+                        <option value="11:00 AM">11:00 AM</option>
+                        <option value="12:00 PM">12:00 PM</option>
+                        <option value="03:00 PM">03:00 PM</option>
+                    </select>
+                    <span class="error" id="appointmentTimeError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="reason">Reason for Visit</label>
+                    <textarea id="reason" rows="3" placeholder="Write a short reason"></textarea>
+                    <span class="error" id="reasonError"></span>
+                </div>
+
+                <button type="submit">Book Appointment</button>
+            </form>
+            <p id="bookingResult" class="result"></p>
+        </section>
+
+        <!-- My Appointments -->
+        <section id="appointments" class="page" style="display:none;">
+            <h2>My Appointments</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Doctor</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="appointmentList">
+                    <tr>
+                        <td>Dr. Sarah Ahmed</td>
+                        <td>2026-11-20</td>
+                        <td>10:00 AM</td>
+                        <td>Booked</td>
+                        <td><button type="button" class="cancel-btn" onclick="cancelAppointment(this)">Cancel</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p id="appointmentMessage" class="result"></p>
+        </section>
+
+        <!-- Medical Records -->
+        <section id="records" class="page" style="display:none;">
+            <h2>Medical Records</h2>
+            <p class="info">Your previous medical records are shown below.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Doctor</th>
+                        <th>Record</th>
+                        <th>Prescription</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2026-10-10</td>
+                        <td>Dr. Sarah Ahmed</td>
+                        <td>General Checkup</td>
+                        <td>View</td>
+                    </tr>
+                    <tr>
+                        <td>2026-09-05</td>
+                        <td>Dr. Hasan Karim</td>
+                        <td>Follow-up Visit</td>
+                        <td>View</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="note">Note: These are sample records for the project demonstration.</p>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
